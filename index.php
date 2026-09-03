@@ -1,8 +1,24 @@
 <?php
-include "header.php";
 
 echo 
-'
+'<!DOCTYPE html>
+<head>
+<link rel="stylesheet" href="CSS//nav_style.css">
+<link rel = "stylesheet" href="CSS//style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caacupe+One&display=swap"rel="stylesheet">
+</head>
+
+<body>
+
+';?>
+
+
+<?php 
+include "header.php";
+echo'
+
 <section class="menu-section">
 
 <div class="menu-intro">
@@ -28,10 +44,9 @@ echo
                     Register to create your account.
                 </p>
 
-                <a href="registration.html"><button>Register</button></a>
+                <a href="registration.php"><button>Register</button></a>
             </div>
         </div>
-
 
         <!-- Card 2 -->
         <div class="card">
