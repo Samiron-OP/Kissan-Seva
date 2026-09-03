@@ -1,0 +1,118 @@
+.auth-card {
+    width: 260px;
+    height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 24px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-top: 5em
+
+}
+  
+  .status-text {
+    font-size: 15px;
+    color: #666666;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .auth-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+  
+  .btn {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 0;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-outline {
+    color: #2e7d32;
+    border: 1px solid #2e7d32;
+    background-color: transparent;
+  }
+  
+  .btn-outline:hover {
+    background-color: #f1f8e9;
+  }
+  
+  .btn-primary {
+    color: #ffffff;
+    background-color: #2e7d32;
+    border: 1px solid #2e7d32;
+  }
+  
+  .btn-primary:hover {
+    background-color: #1b5e20;
+  }
+    .farmer-details {
+        width: 90%;
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 25px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .farmer-details h2 {
+        margin: 0 0 25px;
+        font-size: 24px;
+        color: #2e7d32;
+    }
+    
+    .details-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .detail-item {
+        padding: 15px 18px;
+        background: #f5f7f5;
+        border-radius: 8px;
+        border-left: 4px solid #2e7d32;
+    }
+    
+    .label {
+        display: block;
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 6px;
+    }
+    
+    .value {
+        display: block;
+        font-size: 17px;
+        font-weight: 600;
+        color: #222;
+    }
+    
+    /* Mobile */
+    @media (max-width: 600px) {
+        .details-grid {
+            grid-template-columns: 1fr;
+        }
+    
+        .farmer-details {
+            width: 85%;
+            padding: 20px;
+        }
+    }
+    

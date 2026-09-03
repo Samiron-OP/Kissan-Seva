@@ -8,14 +8,19 @@
     
             /* Main container for the navigation bar */
             .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #1f2937; /* Dark slate gray */
-            padding: 1rem 5%;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }
-    
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 20px;
+              }
+              
+              .profile-img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+              }
+              
             /* Logo styling */
             .logo a {
             color: #ffffff;
