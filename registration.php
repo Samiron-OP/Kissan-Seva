@@ -100,7 +100,7 @@ echo '
         <div class="field" data-field="mobile">
           <label for="mobile"><span class="label-dot"></span>Mobile number</label>
           <div class="input-wrap">
-            <input type="tel" id="mobile" name="mobile" placeholder="10-digit number" inputmode="numeric" maxlength="10"
+            <input type="numbersss" id="mobile" name="mobile" placeholder="10-digit number" inputmode="numeric" maxlength="10"
               autocomplete="tel">
           </div>
           <div class="error-msg"><span class="bang"></span><span class="error-text"></span></div>
