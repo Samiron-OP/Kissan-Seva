@@ -1,0 +1,176 @@
+:root {
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --accent-badge: #e0e7ff;
+  --accent-badge-text: #3730a3;
+}
+
+/* Base Body Styles (Do NOT use display: flex on body) */
+body {
+  background-color: var(--bg-color);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Page Content Wrapper to isolate card alignment */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* Auth Card Styling */
+.auth-card {
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.status-text {
+  font-size: 15px;
+  color: #666666;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.auth-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+.btn {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px 0;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.btn-outline {
+  color: #2e7d32;
+  border: 1px solid #2e7d32;
+  background-color: transparent;
+}
+
+.btn-outline:hover {
+  background-color: #f1f8e9;
+}
+
+.btn-primary {
+  color: #ffffff;
+  background-color: #2e7d32;
+  border: 1px solid #2e7d32;
+}
+
+.btn-primary:hover {
+  background-color: #1b5e20;
+}
+
+/* Card Container */
+.card {
+  width: 100%;
+  max-width: 520px;
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 28px 32px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  box-sizing: border-box;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.centre-name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.scheduled-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--accent-badge);
+  color: var(--accent-badge-text);
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.info-item i {
+  font-size: 1rem;
+  color: var(--primary-color);
+  width: 18px;
+  text-align: center;
+}
+
+.apply-btn {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+}
