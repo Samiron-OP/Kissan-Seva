@@ -60,7 +60,7 @@ echo'
                     Book your slot for the nearest procurement center
                 </p>
 
-                <button>Book</button>
+                <a href="book.php"><button>Book</button></a>
             </div>
         </div>
 
@@ -77,7 +77,7 @@ echo'
                     View status of your procurement & payments recieved
                 </p>
 
-                <button>View</button>
+                <a href="view.php"><button>View</button></a>
             </div>
         </div>
 
