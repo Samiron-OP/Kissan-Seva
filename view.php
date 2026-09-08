@@ -125,7 +125,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                             FROM users
                             JOIN slots
                             ON users.FarmerId = slots.FarmerId
-                            WHERE users.FarmerId = 'F1360';";
+                            WHERE users.FarmerId = '$farmerId';";
 
             $result = mysqli_query($con, $sql);
 
