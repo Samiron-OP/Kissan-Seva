@@ -46,22 +46,12 @@
     font-size:2rem;
   }
 
-  body {
-    margin: 0;
-    min-height: 100vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding-top: 60px;
-    box-sizing: border-box;
-}
+  /* Legacy body rule removed — superseded by the consolidated
+     body rule near the end of this file (was causing leftover
+     padding-top/justify-content to leak into the new layout) */
 
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
 
   width: 100%;
   height: 60px;
@@ -372,4 +362,138 @@
 
 * {
   font-family: 'VCR OSD Mono', 'Courier New', monospace !important;
+}
+
+
+/* =========================================================
+   FINAL LOGIN PAGE LAYOUT — SAME STRUCTURE AS REGISTER PAGE
+   ========================================================= */
+html, body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  display: block !important;
+  min-height: 100vh;
+}
+
+.navbar {
+  width: 100% !important;
+  height: 78px !important;
+  min-height: 78px !important;
+  margin: 0 !important;
+  padding: 0 5% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  position: relative !important;
+  background: #1f2937 !important;
+  box-sizing: border-box !important;
+  z-index: 1000;
+}
+
+.navbar > a {
+  display: block;
+  text-decoration: none;
+}
+
+.logo {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: 'VCR OSD Mono', 'Courier New', monospace !important;
+  font-size: 2rem !important;
+  line-height: 1 !important;
+  color: whitesmoke !important;
+}
+
+/* Google Translate MUST be below the navbar, never beside the card. */
+.translate-wrapper {
+  position: static !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 63px;
+  margin: 0 !important;
+  padding: 4px 0 0 !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  clear: both !important;
+  z-index: 1;
+}
+
+#google_translate_element {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.goog-te-gadget {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: 'VCR OSD Mono', 'Courier New', monospace !important;
+  font-size: 0 !important;
+  white-space: normal !important;
+}
+
+.goog-te-gadget select {
+  display: block !important;
+  width: calc(100% - 4px) !important;
+  height: 43px !important;
+  margin: 0 2px !important;
+  padding: 0 14px !important;
+  box-sizing: border-box !important;
+  background: var(--cream) !important;
+  border: 3px solid var(--soil) !important;
+  color: var(--soil) !important;
+  font-family: 'VCR OSD Mono', 'Courier New', monospace !important;
+  font-size: 0.9rem !important;
+  line-height: 37px !important;
+}
+
+.goog-te-gadget > span {
+  display: block !important;
+  margin: 3px 0 0 !important;
+  height: 14px !important;
+  line-height: 14px !important;
+  font-size: 11px !important;
+}
+
+.goog-te-gadget > span a {
+  font-size: 11px !important;
+}
+
+.card {
+  width: 520px !important;
+  max-width: calc(100% - 24px) !important;
+  margin: 54px auto 40px !important;
+  padding: 0 !important;
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  justify-self: auto !important;
+  align-self: auto !important;
+  display: block !important;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    height: 72px !important;
+    min-height: 72px !important;
+  }
+
+  .logo {
+    font-size: 1.7rem !important;
+  }
+
+  .card {
+    width: auto !important;
+    max-width: calc(100% - 24px) !important;
+    margin-top: 36px !important;
+  }
 }
