@@ -37,6 +37,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     <!-- PAGE CSS -->
     <link rel="stylesheet" href="CSS/view_style.css">
 
+    <link rel="stylesheet" href="CSS/translate.css">
 
     <!-- FONT AWESOME -->
     <link rel="stylesheet"
@@ -70,7 +71,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
 
     <?php include "header.php"; ?>
 
-
+<div id="google_translate_element"></div>
     <!-- ==============================
          CARD
          ============================== -->
@@ -111,21 +112,27 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
         
 
         if ($login) {
-
+            $timeStart = 9;
+            $timeEnd;
             $farmerId = $_SESSION['FarmerId'];
             
-            $sql = "SELECT users.FarmerId,
-                            users.Name,
-                            users.Crop,
-                            users.Quantity,
-                            slots.Location,
-                            slots.Centre,
-                            slots.Date,
-                            slots.Status
-                            FROM users
-                            JOIN slots
-                            ON users.FarmerId = slots.FarmerId
-                            WHERE users.FarmerId = '$farmerId';";
+            $sql = "SELECT
+                    u.Name,
+                    s.Date,
+                    sb.TokenNo,
+                    sb.StartTime,
+                    sb.EndTime,
+                    sb.Quantity,
+                    s.Location,
+                    s.Status,
+                    s.Centre
+                FROM slot_bookings sb
+                JOIN users u
+                    ON sb.FarmerId = u.FarmerId
+                JOIN slots s
+                    ON sb.SNo = s.SNo
+                WHERE sb.FarmerId = '". $farmerId . "'
+                ORDER BY s.Date, sb.TokenNo;";
 
             $result = mysqli_query($con, $sql);
 
@@ -193,18 +200,18 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
             </div>
 
 
-            <!-- CROP + QUANTITY -->
+            <!-- TIME + QUANTITY -->
 
             <div class="grid-2">
 
                 <div class="field-group">
 
                     <span class="label">
-                        Crop
+                        Estimated Time
                     </span>
 
                     <span class="value">
-                        '.$row["Crop"].'
+                        '.$row["StartTime"].' ~ '. $row["EndTime"].'
                     </span>
 
                 </div>
@@ -250,6 +257,15 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
             }
         }
 ?>
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en'}, 
+      'google_translate_element'
+    );
+  }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 

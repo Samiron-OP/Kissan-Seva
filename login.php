@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Prepare SQL statement
         $stmt = mysqli_prepare(
             $con,
-            "SELECT FarmerId, password FROM users WHERE FarmerId = ?"
+            "SELECT FarmerId, Password FROM users WHERE FarmerId = ?"
         );
 
         if ($stmt) {
@@ -40,13 +40,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $row = mysqli_fetch_assoc($result);
 
-                // Compare password
-                if ($password == $row["password"]) {
+                // Verify the plain text password against the hashed password in the DB
+                if (password_verify($password, $row["Password"])) {
                     
                     // Login successful
                     $_SESSION["loggedin"] = true;
                     $_SESSION["FarmerId"] = $row["FarmerId"];
-                    echo $_SESSION['loggedin'];
+                    
                     // Redirect
                     header("Location: index.php");
                     exit();
@@ -71,7 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -103,6 +102,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </nav>
 
+<div class="translate-wrapper" style="position: relative; top: 60px; left: 50%; transform: translateX(-50%); z-index: 1000; ">
+    <div id="google_translate_element"></div>
+</div>
 
 <div class="card">
 
@@ -270,12 +272,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     style="display: flex;"
                 >
 
-                    <span class="bang"></span>
-
-                    <span class="error-text">
-                        Invalid Farmer ID or Password.
-                    </span>
-
                 </div>
 
   
@@ -353,6 +349,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- JavaScript -->
 
 <script src="Scripts/login_JS.js"></script>
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en'}, 
+      'google_translate_element'
+    );
+  }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 

@@ -10,18 +10,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $crop = $_POST["crop"];
     $qunatity = $_POST["quantity"];
 
+    // Hash the password securely using bcrypt/Argon2id (managed automatically)
+    $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO `users` (`SNo`, `Name`, `MobileNo`, `Password`, `Location`, `FarmerId`, `Crop`, `Quantity`) VALUES (NULL, '$name', '$mobile', '$pass', '$location', '$farmerid', '$crop', '$qunatity');";
+    // Use prepared statements to execute safely
+    $sql = "INSERT INTO `users` (`SNo`, `Name`, `MobileNo`, `Password`, `Location`, `FarmerId`, `Crop`, `Quantity`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)";
+    
+    $stmt = mysqli_prepare($con, $sql);
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "sssssss", $name, $mobile, $hashed_pass, $location, $farmerid, $crop, $qunatity);
+        $result = mysqli_stmt_execute($stmt);
 
-    $result = mysqli_query($con, $sql);
-
-    if($result){
-      $registered = true;
-      header("Location: login.php");
-      exit();
-    }
-    else{
-        echo "Something is wrong";
+        if ($result) {
+            $registered = true;
+            mysqli_stmt_close($stmt);
+            header("Location: login.php");
+            exit();
+        } else {
+            echo "Something went wrong during execution.";
+        }
+    } else {
+        echo "Database error: Unable to prepare statement.";
     }
 }
 
@@ -35,6 +44,8 @@ echo '
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Farmer Registration</title>
   <link rel="stylesheet" href="CSS/registration_style.css">
+
+
 </head>
 
 <body>
@@ -47,6 +58,8 @@ echo '
       </div>
 
     </nav>
+
+    <div id="google_translate_element"></div>
 
 
     <!-- YOUR EXISTING REGISTRATION FORM -->
@@ -170,6 +183,16 @@ echo '
     <script src="Scripts/registration_JS.js">
 
     </script>
+    <script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en'}, 
+      'google_translate_element'
+    );
+  }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
 
   </body>
 

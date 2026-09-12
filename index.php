@@ -5,6 +5,8 @@ echo
 <head>
 <link rel="stylesheet" href="CSS//nav_style.css">
 <link rel = "stylesheet" href="CSS//style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="CSS//translate.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caacupe+One&display=swap"rel="stylesheet">
@@ -14,11 +16,10 @@ echo
 
 ';?>
 
-
 <?php 
 include "header.php";
-echo'
-
+?>
+<div id="google_translate_element"></div>
 <section class="menu-section">
 
 <div class="menu-intro">
@@ -82,9 +83,14 @@ echo'
         </div>
 
     </div>
-
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en'}, 
+      'google_translate_element'
+    );
+  }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
-
-    ';
-?>
