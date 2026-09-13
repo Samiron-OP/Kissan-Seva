@@ -42,10 +42,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["apply"])) {
     $farmerId = $_SESSION["FarmerId"];
     $sno = isset($_POST["SNo"]) ? (int)$_POST["SNo"] : 0;
     $quantity = isset($_POST["Quantity"]) ? (int)$_POST["Quantity"] : 0;
+    $crop = isset($_POST["Crop"]) ? trim($_POST["Crop"]) : '';
 
-    if ($sno <= 0 || $quantity <= 0) {
+    if ($sno <= 0 || $quantity <= 0 || $crop === '') {
         echo "<script>
-                alert('Please enter a valid quantity.');
+                alert('Please select a crop and enter a valid quantity.');
                 window.location.href = 'book.php';
               </script>";
         exit;
@@ -220,8 +221,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["apply"])) {
         // --------------------------------------------------
 
         $sql = "INSERT INTO slot_bookings
-                (SNo, FarmerId, Quantity, TokenNo, StartTime, EndTime)
-                VALUES (?, ?, ?, ?, ?, ?)";
+        (SNo, FarmerId, Crop, Quantity, TokenNo, StartTime, EndTime)
+        VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = mysqli_prepare($con, $sql);
 
@@ -231,9 +232,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["apply"])) {
 
         mysqli_stmt_bind_param(
             $stmt,
-            "isiiss",
+            "issiiss",
             $sno,
             $farmerId,
+            $crop,
             $quantity,
             $tokenNo,
             $startValue,
@@ -555,8 +557,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["apply"])) {
         </strong>
 
         <?php echo (int)$row["RemainingQuantity"]; ?>
-
+        Kg
     </div>
+
+    <!-- Select Crop -->
+<div style="margin: 15px 0;">
+
+    <label for="crop_<?php echo (int)$row["SNo"]; ?>">
+        <strong>Select Crop:</strong>
+    </label>
+
+    <select
+        id="crop_<?php echo (int)$row["SNo"]; ?>"
+        name="Crop"
+        required
+    >
+        <option value="">-- Select Crop --</option>
+        <option value="Paddy">Paddy</option>
+        <option value="Cotton">Cotton</option>
+        <option value="Maize">Maize</option>
+        <option value="Chilli">Chilli</option>
+        <option value="Turmeric">Turmeric</option>
+    </select>
+
+</div>
 
 
     <!-- Farmer enters quantity -->
