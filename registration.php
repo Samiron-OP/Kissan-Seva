@@ -1,4 +1,5 @@
 <?php
+
 $registered = false;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include "connect.php";
@@ -7,18 +8,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pass = $_POST["password"];
     $location = $_POST["location"];
     $farmerid = $_POST["farmerId"];
-    $crop = $_POST["crop"];
-    $qunatity = $_POST["quantity"];
 
     // Hash the password securely using bcrypt/Argon2id (managed automatically)
     $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
 
     // Use prepared statements to execute safely
-    $sql = "INSERT INTO `users` (`SNo`, `Name`, `MobileNo`, `Password`, `Location`, `FarmerId`, `Crop`, `Quantity`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO `users` (`SNo`, `Name`, `MobileNo`, `Password`, `Location`, `FarmerId`) VALUES (NULL, ?, ?, ?, ?, ?)";
     
     $stmt = mysqli_prepare($con, $sql);
     if ($stmt) {
-        mysqli_stmt_bind_param($stmt, "sssssss", $name, $mobile, $hashed_pass, $location, $farmerid, $crop, $qunatity);
+        mysqli_stmt_bind_param($stmt, "sssss", $name, $mobile, $hashed_pass, $location, $farmerid);
         $result = mysqli_stmt_execute($stmt);
 
         if ($result) {
@@ -148,23 +147,6 @@ echo '
           <label for="farmerId"><span class="label-dot"></span>Farmer ID</label>
           <div class="input-wrap">
             <input type="text" id="farmerId" name="farmerId" placeholder="e.g. FID20458">
-          </div>
-          <div class="error-msg"><span class="bang"></span><span class="error-text"></span></div>
-        </div>
-
-        <div class="field" data-field="crop">
-          <label for="crop"><span class="label-dot"></span>Crop name</label>
-          <div class="input-wrap">
-            <input type="text" id="crop" name="crop" placeholder="e.g. Cotton, Paddy, Turmeric">
-          </div>
-          <div class="error-msg"><span class="bang"></span><span class="error-text"></span></div>
-        </div>
-
-        <div class="field" data-field="quantity">
-          <label for="quantity"><span class="label-dot"></span>Quantity</label>
-          <div class="input-wrap quantity-row">
-            <input type="number" id="quantity" name="quantity" placeholder="0" min="0" step="0.1">
-            <span class="unit">KG</span>
           </div>
           <div class="error-msg"><span class="bang"></span><span class="error-text"></span></div>
         </div>

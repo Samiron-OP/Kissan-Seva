@@ -296,15 +296,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             </label>
 
-
-            <a
-                href="#"
-                class="forgot-link"
-                id="forgotLink"
-            >
-                Forgot password?
-            </a>
-
         </div>
 
 

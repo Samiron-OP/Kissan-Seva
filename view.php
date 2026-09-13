@@ -116,23 +116,24 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
             $timeEnd;
             $farmerId = $_SESSION['FarmerId'];
             
-            $sql = "SELECT
-                    u.Name,
-                    s.Date,
-                    sb.TokenNo,
-                    sb.StartTime,
-                    sb.EndTime,
-                    sb.Quantity,
-                    s.Location,
-                    s.Status,
-                    s.Centre
-                FROM slot_bookings sb
-                JOIN users u
-                    ON sb.FarmerId = u.FarmerId
-                JOIN slots s
-                    ON sb.SNo = s.SNo
-                WHERE sb.FarmerId = '". $farmerId . "'
-                ORDER BY s.Date, sb.TokenNo;";
+        $sql = "SELECT
+                sb.BookingId,
+                u.Name,
+                s.Date,
+                sb.TokenNo,
+                sb.StartTime,
+                sb.EndTime,
+                sb.Quantity,
+                s.Location,
+                s.Status,
+                s.Centre
+            FROM slot_bookings sb
+            JOIN users u
+                ON sb.FarmerId = u.FarmerId
+            JOIN slots s
+                ON sb.SNo = s.SNo
+            WHERE sb.FarmerId = '". $farmerId . "'
+            ORDER BY s.Date, sb.TokenNo;";
 
             $result = mysqli_query($con, $sql);
 
@@ -250,6 +251,28 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
 
             </div>
 
+        <a href="estimate.php?booking_id=' . $row["BookingId"] . '" style="text-decoration: none;">
+            <button class="estimate-btn" style="
+                background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                color: #ffffff;
+                border: none;
+                padding: 10px 18px;
+                font-size: 14px;
+                font-weight: 600;
+                font-family: inherit;
+                border-radius: 8px;
+                cursor: pointer;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                transition: all 0.2s ease-in-out;
+            ">
+                💰 View Estimated Payment
+            </button>
+        </a>
+        
+        
         </div>
 
     </main>';
